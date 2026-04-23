@@ -18,6 +18,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { CarGallery } from "@/components/car-gallery"
 import { CarCard } from "@/components/car-card"
+import { BookingForm } from "@/components/booking-form"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -142,10 +143,14 @@ export default async function CarDetailPage({ params }: { params: Promise<{ id: 
 
             <Separator className="my-6" />
 
+            <BookingForm car={car} />
+
+            <Separator className="my-6" />
+
             <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-5">
-              <p className="font-serif text-lg font-semibold">Interested in this car?</p>
+              <p className="font-serif text-lg font-semibold">Other ways to contact us</p>
               <p className="text-sm text-muted-foreground">
-                Reach out — we&apos;ll arrange an inspection, test drive, or delivery quote.
+                Prefer traditional methods? Reach out — we&apos;re here to help.
               </p>
               <div className="mt-2 flex flex-wrap gap-2">
                 <Button asChild className="flex-1" disabled={sold}>
