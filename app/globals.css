@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@layer base {
+  :root {
+    --font-sans: var(--font-inter);
+    --font-serif: var(--font-playfair);
+
+    /* Neutrals */
+    --background: 40 30% 97%;          /* warm off-white */
+    --foreground: 220 25% 10%;         /* near-black charcoal */
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    /* Primary = deep charcoal navy */
+    --primary: 220 30% 12%;
+    --primary-foreground: 40 30% 97%;
+
+    /* Secondary = soft stone */
+    --secondary: 40 15% 93%;
+    --secondary-foreground: 220 25% 15%;
+
+    --muted: 40 15% 93%;
+    --muted-foreground: 220 10% 40%;
+
+    /* Accent = warm European gold */
+    --accent: 38 60% 50%;
+    --accent-foreground: 220 30% 12%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 40 30% 97%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 38 60% 50%;
+
+    --radius: 0.5rem;
+
+    --chart-1: 220 30% 12%;
+    --chart-2: 38 60% 50%;
+    --chart-3: 220 10% 40%;
+    --chart-4: 0 70% 45%;
+    --chart-5: 160 30% 35%;
+
+    --sidebar-background: 40 30% 97%;
+    --sidebar-foreground: 220 25% 15%;
+    --sidebar-primary: 220 30% 12%;
+    --sidebar-primary-foreground: 40 30% 97%;
+    --sidebar-accent: 40 15% 93%;
+    --sidebar-accent-foreground: 220 25% 15%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 38 60% 50%;
+  }
+
+  .dark {
+    --background: 220 30% 7%;
+    --foreground: 40 30% 96%;
+
+    --card: 220 28% 10%;
+    --card-foreground: 40 30% 96%;
+
+    --popover: 220 28% 10%;
+    --popover-foreground: 40 30% 96%;
+
+    --primary: 40 30% 96%;
+    --primary-foreground: 220 30% 10%;
+
+    --secondary: 220 20% 16%;
+    --secondary-foreground: 40 30% 96%;
+
+    --muted: 220 20% 16%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 38 65% 55%;
+    --accent-foreground: 220 30% 10%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 40 30% 96%;
+
+    --border: 220 18% 20%;
+    --input: 220 18% 20%;
+    --ring: 38 65% 55%;
+
+    --sidebar-background: 220 30% 7%;
+    --sidebar-foreground: 40 30% 96%;
+    --sidebar-primary: 40 30% 96%;
+    --sidebar-primary-foreground: 220 30% 10%;
+    --sidebar-accent: 220 20% 16%;
+    --sidebar-accent-foreground: 40 30% 96%;
+    --sidebar-border: 220 18% 20%;
+    --sidebar-ring: 38 65% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv02", "cv03";
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
