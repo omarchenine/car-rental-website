@@ -17,7 +17,7 @@ declare global {
 }
 
 function createClientPromise(): Promise<MongoClient> {
-  const uri = process.env.MONGODB_URI
+  let uri = process.env.MONGODB_URI
   if (!uri) {
     return Promise.reject(
       new Error(
@@ -25,6 +25,12 @@ function createClientPromise(): Promise<MongoClient> {
       ),
     )
   }
+  
+  // Handle case where env variable has key=value format
+  if (uri.includes("MONGODB_URI=")) {
+    uri = uri.replace("MONGODB_URI=", "")
+  }
+  
   const p = new MongoClient(uri, options).connect()
   // If this attempt fails, clear the cache so the next call can try again.
   p.catch(() => {

@@ -3,7 +3,13 @@
 const { MongoClient } = require("mongodb")
 
 async function verifyDatabase() {
-  const uri = process.env.MONGODB_URI
+  let uri = process.env.MONGODB_URI
+  
+  // Handle case where env variable has key=value format
+  if (uri && uri.includes("MONGODB_URI=")) {
+    uri = uri.replace("MONGODB_URI=", "")
+  }
+  
   if (!uri) {
     console.error("❌ MONGODB_URI environment variable is not set!")
     console.error("   Add it in Project Settings → Environment Variables")

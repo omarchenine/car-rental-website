@@ -3,11 +3,16 @@
 const { MongoClient } = require("mongodb")
 
 async function setupDatabase() {
-  const uri = process.env.MONGODB_URI
+  let uri = process.env.MONGODB_URI
   if (!uri) {
     console.error("❌ MONGODB_URI environment variable is not set!")
     console.error("   Add it in Project Settings → Environment Variables")
     process.exit(1)
+  }
+  
+  // Handle case where env variable has key=value format
+  if (uri.includes("MONGODB_URI=")) {
+    uri = uri.replace("MONGODB_URI=", "")
   }
 
   const client = new MongoClient(uri, {
