@@ -13,6 +13,7 @@ import {
   CircleCheck,
   Phone,
   Mail,
+  MessageCircle,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -147,23 +148,37 @@ export default async function CarDetailPage({ params }: { params: Promise<{ id: 
               <p className="text-sm text-muted-foreground">
                 Reach out — we&apos;ll arrange an inspection, test drive, or delivery quote.
               </p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                <Button asChild className="flex-1" disabled={sold}>
-                  <a href="tel:+493012345678">
-                    <Phone className="mr-2 h-4 w-4" />
-                    Call us
-                  </a>
-                </Button>
-                <Button asChild variant="outline" className="flex-1">
+              <div className="mt-2 flex flex-col gap-2">
+                <Button asChild className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white" disabled={sold}>
                   <a
-                    href={`mailto:hello@monacomotors.eu?subject=${encodeURIComponent(
-                      `Inquiry: ${car.year} ${car.make} ${car.model}`,
+                    href={`https://wa.me/351931312841?text=${encodeURIComponent(
+                      `Hi, I'm interested in booking the ${car.year} ${car.make} ${car.model}.`
                     )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <Mail className="mr-2 h-4 w-4" />
-                    Email us
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Book via WhatsApp
                   </a>
                 </Button>
+                <div className="flex flex-wrap gap-2">
+                  <Button asChild className="flex-1" disabled={sold}>
+                    <a href="tel:+493012345678">
+                      <Phone className="mr-2 h-4 w-4" />
+                      Call us
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" className="flex-1">
+                    <a
+                      href={`mailto:hello@monacomotors.eu?subject=${encodeURIComponent(
+                        `Inquiry: ${car.year} ${car.make} ${car.model}`,
+                      )}`}
+                    >
+                      <Mail className="mr-2 h-4 w-4" />
+                      Email us
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

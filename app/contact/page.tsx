@@ -1,6 +1,6 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { Mail, MapPin, Phone, Clock } from "lucide-react"
+import { Mail, MapPin, Phone, Clock, MessageCircle } from "lucide-react"
 
 export const metadata = { title: "Contact" }
 
@@ -27,6 +27,11 @@ export default function ContactPage() {
             icon={<Mail className="h-5 w-5" />}
             title="Email"
             lines={[{ text: "hello@monacomotors.eu", href: "mailto:hello@monacomotors.eu" }]}
+          />
+          <ContactItem
+            icon={<MessageCircle className="h-5 w-5" />}
+            title="WhatsApp (Bookings)"
+            lines={[{ text: "+351 931 312 841", href: "https://wa.me/351931312841" }]}
           />
           <ContactItem
             icon={<MapPin className="h-5 w-5" />}
