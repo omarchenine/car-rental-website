@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   description:
     "Hand-picked European cars. Browse our curated inventory of premium vehicles, each inspected and ready to drive.",
   generator: "v0.app",
+  verification: {
+    google: "_FzJwPfQIHxrXU13E56chBLho_oMkKvPW_C-k_XMVCI",
+  },
   openGraph: {
     title: "Monaco Motors — European Car Dealership",
     description: "Hand-picked European cars, curated and inspected.",
