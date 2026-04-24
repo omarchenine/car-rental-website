@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Car, Mail, Phone, MapPin } from "lucide-react"
+import { Car, Mail, Phone, MapPin, Lock } from "lucide-react"
 
 export function SiteFooter() {
   return (
@@ -66,13 +66,15 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-primary-foreground/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} DCMotors. All rights reserved.</p>
-          <p>
-            <Link href="/admin" className="hover:text-accent">
-              Staff login
-            </Link>
-          </p>
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <p className="text-xs text-primary-foreground/60">© {new Date().getFullYear()} DCMotors. All rights reserved.</p>
+          <Link 
+            href="/admin" 
+            className="inline-flex items-center gap-2 rounded-md bg-primary-foreground/10 px-3 py-2 text-xs font-medium text-primary-foreground hover:bg-primary-foreground/20 transition-colors"
+          >
+            <Lock className="h-3 w-3" />
+            Staff Portal
+          </Link>
         </div>
       </div>
     </footer>
