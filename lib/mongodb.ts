@@ -1,5 +1,6 @@
 import { MongoClient, type Db, type Collection } from "mongodb"
 import type { CarDoc } from "./car-types"
+import type { BookingDoc } from "./booking-types"
 
 const options = {
   maxPoolSize: 10,
@@ -16,7 +17,7 @@ declare global {
 }
 
 function createClientPromise(): Promise<MongoClient> {
-  const uri = process.env.MONGODB_URI
+  let uri = process.env.MONGODB_URI
   if (!uri) {
     return Promise.reject(
       new Error(
@@ -24,6 +25,12 @@ function createClientPromise(): Promise<MongoClient> {
       ),
     )
   }
+  
+  // Handle case where env variable has key=value format
+  if (uri.includes("MONGODB_URI=")) {
+    uri = uri.replace("MONGODB_URI=", "")
+  }
+  
   const p = new MongoClient(uri, options).connect()
   // If this attempt fails, clear the cache so the next call can try again.
   p.catch(() => {
@@ -74,6 +81,19 @@ export async function getCarsCollection(): Promise<Collection<CarDoc>> {
     col.createIndex({ status: 1 }),
     col.createIndex({ make: 1, model: 1 }),
     col.createIndex({ featured: -1, createdAt: -1 }),
+  ]).catch(() => {})
+  return col
+}
+
+export async function getBookingsCollection(): Promise<Collection<BookingDoc>> {
+  const db = await getDb()
+  const col = db.collection<BookingDoc>("bookings")
+  // Fire-and-forget: never let index creation races or perms block reads.
+  void Promise.all([
+    col.createIndex({ createdAt: -1 }),
+    col.createIndex({ carId: 1 }),
+    col.createIndex({ customerEmail: 1 }),
+    col.createIndex({ status: 1 }),
   ]).catch(() => {})
   return col
 }
