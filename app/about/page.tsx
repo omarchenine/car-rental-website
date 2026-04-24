@@ -15,7 +15,7 @@ export default function AboutPage() {
           A family dealership, built on trust.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Monaco Motors was founded with a simple idea: buying a premium European car should be
+          DCMotors was founded with a simple idea: buying a premium car should be
           transparent, personal and enjoyable. We hand-pick every vehicle, inspect it
           end-to-end, and stand behind it long after the keys change hands.
         </p>
@@ -23,7 +23,7 @@ export default function AboutPage() {
         <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-lg">
           <Image
             src="/about-showroom.jpg"
-            alt="Monaco Motors showroom"
+            alt="DCMotors showroom"
             fill
             sizes="(min-width: 1024px) 960px, 100vw"
             className="object-cover"
@@ -49,8 +49,8 @@ export default function AboutPage() {
           />
           <Value
             icon={<Globe2 className="h-5 w-5" />}
-            title="European delivery"
-            body="Based in Berlin, we deliver across the EU with full paperwork, transport, and registration support."
+            title="Portugal delivery"
+            body="Based in Lisbon, we deliver across Portugal with full paperwork, transport, and registration support."
           />
         </div>
       </main>

@@ -48,18 +48,18 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-3 text-sm text-primary-foreground/70">
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
-              <span>Hauptstraße 42, 10178 Berlin, Germany</span>
+              <span>Lisbon, Portugal</span>
             </li>
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
-              <a href="tel:+493012345678" className="hover:text-accent">
-                +49 30 1234 5678
+              <a href="tel:+351931312841" className="hover:text-accent">
+                +351 931 312 841
               </a>
             </li>
             <li className="flex items-start gap-2">
               <Mail className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
-              <a href="mailto:hello@dcmotors.eu" className="hover:text-accent">
-                hello@dcmotors.eu
+              <a href="mailto:DCMotors@gmail.com" className="hover:text-accent">
+                DCMotors@gmail.com
               </a>
             </li>
           </ul>

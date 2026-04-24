@@ -154,14 +154,14 @@ export default async function CarDetailPage({ params }: { params: Promise<{ id: 
               </p>
               <div className="mt-2 flex flex-wrap gap-2">
                 <Button asChild className="flex-1" disabled={sold}>
-                  <a href="tel:+493012345678">
+                  <a href="tel:+351931312841">
                     <Phone className="mr-2 h-4 w-4" />
                     Call us
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="flex-1">
                   <a
-                    href={`mailto:hello@dcmotors.eu?subject=${encodeURIComponent(
+                    href={`mailto:DCMotors@gmail.com?subject=${encodeURIComponent(
                       `Inquiry: ${car.year} ${car.make} ${car.model}`,
                     )}`}
                   >

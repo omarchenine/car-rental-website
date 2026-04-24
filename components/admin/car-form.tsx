@@ -46,7 +46,7 @@ function emptyState(): CarInput {
     engineSize: undefined,
     color: "",
     vin: "",
-    location: "Berlin, Germany",
+    location: "Lisbon, Portugal",
     description: "",
     features: [],
     media: [],

@@ -21,17 +21,17 @@ export default function ContactPage() {
           <ContactItem
             icon={<Phone className="h-5 w-5" />}
             title="Phone"
-            lines={[{ text: "+49 30 1234 5678", href: "tel:+493012345678" }]}
+            lines={[{ text: "+351 931 312 841", href: "tel:+351931312841" }]}
           />
           <ContactItem
             icon={<Mail className="h-5 w-5" />}
             title="Email"
-            lines={[{ text: "hello@dcmotors.eu", href: "mailto:hello@dcmotors.eu" }]}
+            lines={[{ text: "DCMotors@gmail.com", href: "mailto:DCMotors@gmail.com" }]}
           />
           <ContactItem
             icon={<MapPin className="h-5 w-5" />}
             title="Showroom"
-            lines={[{ text: "Hauptstraße 42, 10178 Berlin, Germany" }]}
+            lines={[{ text: "Lisbon, Portugal" }]}
           />
           <ContactItem
             icon={<Clock className="h-5 w-5" />}
