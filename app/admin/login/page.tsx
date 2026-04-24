@@ -23,7 +23,7 @@ export default async function AdminLoginPage({
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground">
             <Car className="h-4 w-4" aria-hidden="true" />
           </span>
-          <span className="font-serif text-xl font-semibold">Monaco Motors</span>
+          <span className="font-serif text-xl font-semibold">DCMotors</span>
         </Link>
         <h1 className="mt-8 font-serif text-2xl font-semibold">Staff login</h1>
         <p className="mt-1 text-sm text-muted-foreground">

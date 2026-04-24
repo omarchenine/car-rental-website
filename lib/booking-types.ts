@@ -15,6 +15,7 @@ export interface BookingDoc {
   customerName: string
   customerEmail: string
   customerPhone: string
+  customerLocation: string
   bookingType: BookingType
   message: string
   status: BookingStatus
@@ -51,6 +52,7 @@ export interface BookingInput {
   customerName: string
   customerEmail: string
   customerPhone: string
+  customerLocation: string
   bookingType: BookingType
   message: string
 }
@@ -71,6 +73,7 @@ export function validateBookingInput(input: unknown): { ok: true; value: Booking
     requireStr("customerName", 100),
     requireStr("customerEmail", 255),
     requireStr("customerPhone", 20),
+    requireStr("customerLocation", 100),
     requireStr("bookingType", 50),
     requireStr("message", 1000),
   ].filter(Boolean) as string[]
@@ -98,6 +101,7 @@ export function validateBookingInput(input: unknown): { ok: true; value: Booking
       customerName: String(i.customerName).trim(),
       customerEmail: String(i.customerEmail).trim(),
       customerPhone: String(i.customerPhone).trim(),
+      customerLocation: String(i.customerLocation).trim(),
       bookingType: i.bookingType as BookingType,
       message: String(i.message).trim(),
       carDetails: {

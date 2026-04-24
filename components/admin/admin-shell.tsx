@@ -27,7 +27,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               <Car className="h-4 w-4" />
             </span>
             <div className="flex flex-col leading-tight">
-              <span className="font-serif text-lg font-semibold">Monaco Motors</span>
+              <span className="font-serif text-lg font-semibold">DCMotors</span>
               <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
                 Admin
               </span>

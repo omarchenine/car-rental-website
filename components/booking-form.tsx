@@ -21,6 +21,7 @@ export function BookingForm({ car }: BookingFormProps) {
     customerName: "",
     customerEmail: "",
     customerPhone: "",
+    customerLocation: "",
     bookingType: "inquiry" as const,
     message: "",
   })
@@ -67,7 +68,8 @@ export function BookingForm({ car }: BookingFormProps) {
         `Booking Type: ${formData.bookingType.replace("-", " ")}\n` +
         `Name: ${formData.customerName}\n` +
         `Email: ${formData.customerEmail}\n` +
-        `Phone: ${formData.customerPhone}\n\n` +
+        `Phone: ${formData.customerPhone}\n` +
+        `Location: ${formData.customerLocation}\n\n` +
         `Message: ${formData.message}`
       )
 
@@ -78,6 +80,7 @@ export function BookingForm({ car }: BookingFormProps) {
         customerName: "",
         customerEmail: "",
         customerPhone: "",
+        customerLocation: "",
         bookingType: "inquiry",
         message: "",
       })
@@ -143,6 +146,22 @@ export function BookingForm({ car }: BookingFormProps) {
             disabled={isLoading}
           />
         </div>
+      </div>
+
+      <div>
+        <label htmlFor="customerLocation" className="block text-sm font-medium mb-1">
+          Location / City *
+        </label>
+        <Input
+          id="customerLocation"
+          name="customerLocation"
+          type="text"
+          placeholder="e.g., Lisbon, Porto, or your city"
+          value={formData.customerLocation}
+          onChange={handleInputChange}
+          required
+          disabled={isLoading}
+        />
       </div>
 
       <div>

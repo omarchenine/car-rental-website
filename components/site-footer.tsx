@@ -10,10 +10,10 @@ export function SiteFooter() {
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-accent-foreground">
               <Car className="h-4 w-4" aria-hidden="true" />
             </span>
-            <span className="font-serif text-xl font-semibold">Monaco Motors</span>
+            <span className="font-serif text-xl font-semibold">DCMotors</span>
           </Link>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/70">
-            A curated European car dealership. Every vehicle in our inventory is hand-selected,
+            A premium car dealership. Every vehicle in our inventory is hand-selected,
             inspected, and prepared for its next journey.
           </p>
         </div>
@@ -58,8 +58,8 @@ export function SiteFooter() {
             </li>
             <li className="flex items-start gap-2">
               <Mail className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
-              <a href="mailto:hello@monacomotors.eu" className="hover:text-accent">
-                hello@monacomotors.eu
+              <a href="mailto:hello@dcmotors.eu" className="hover:text-accent">
+                hello@dcmotors.eu
               </a>
             </li>
           </ul>
@@ -67,7 +67,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-primary-foreground/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} Monaco Motors. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} DCMotors. All rights reserved.</p>
           <p>
             <Link href="/admin" className="hover:text-accent">
               Staff login

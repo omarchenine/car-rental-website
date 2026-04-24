@@ -18,15 +18,15 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Monaco Motors — European Car Dealership",
-    template: "%s | Monaco Motors",
+    default: "DCMotors — Premium Car Dealership",
+    template: "%s | DCMotors",
   },
   description:
-    "Hand-picked European cars. Browse our curated inventory of premium vehicles, each inspected and ready to drive.",
+    "Hand-picked premium cars. Browse our curated inventory of quality vehicles, each inspected and ready to drive.",
   generator: "v0.app",
   openGraph: {
-    title: "Monaco Motors — European Car Dealership",
-    description: "Hand-picked European cars, curated and inspected.",
+    title: "DCMotors — Premium Car Dealership",
+    description: "Hand-picked premium cars, curated and inspected.",
     type: "website",
   },
 }

@@ -68,6 +68,9 @@ export default async function BookingsPage() {
                       <Phone className="h-3 w-3" />
                       {booking.customerPhone}
                     </a>
+                    <p className="text-xs text-muted-foreground">
+                      📍 {booking.customerLocation}
+                    </p>
                   </div>
                 </div>
 

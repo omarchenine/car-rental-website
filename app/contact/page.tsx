@@ -26,7 +26,7 @@ export default function ContactPage() {
           <ContactItem
             icon={<Mail className="h-5 w-5" />}
             title="Email"
-            lines={[{ text: "hello@monacomotors.eu", href: "mailto:hello@monacomotors.eu" }]}
+            lines={[{ text: "hello@dcmotors.eu", href: "mailto:hello@dcmotors.eu" }]}
           />
           <ContactItem
             icon={<MapPin className="h-5 w-5" />}

@@ -161,7 +161,7 @@ export default async function CarDetailPage({ params }: { params: Promise<{ id: 
                 </Button>
                 <Button asChild variant="outline" className="flex-1">
                   <a
-                    href={`mailto:hello@monacomotors.eu?subject=${encodeURIComponent(
+                    href={`mailto:hello@dcmotors.eu?subject=${encodeURIComponent(
                       `Inquiry: ${car.year} ${car.make} ${car.model}`,
                     )}`}
                   >
