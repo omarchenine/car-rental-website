@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "@/components/ui/sonner"
+import { GoogleAnalytics } from "@/components/google-analytics"
 import "./globals.css"
 
 const inter = Inter({
@@ -29,6 +30,9 @@ export const metadata: Metadata = {
     description: "Hand-picked premium cars, curated and inspected.",
     type: "website",
   },
+  verification: {
+    google: "google96fc682b85be962e",
+  },
 }
 
 export const viewport: Viewport = {
@@ -47,6 +51,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} bg-background`}>
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body className="font-sans antialiased min-h-screen">
         {children}
         <Toaster richColors position="top-right" />
