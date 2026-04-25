@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from "jose"
 import { cookies } from "next/headers"
+import bcrypt from "bcryptjs"
 
 const SESSION_COOKIE = "dealer_session"
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7 // 7 days
@@ -74,3 +75,12 @@ export async function requireAdmin(): Promise<SessionPayload> {
 }
 
 export const SESSION_COOKIE_NAME = SESSION_COOKIE
+
+// Password hashing functions
+export async function hashPassword(password: string): Promise<string> {
+  return await bcrypt.hash(password, 12)
+}
+
+export async function verifyPassword(password: string, hash: string): Promise<boolean> {
+  return await bcrypt.compare(password, hash)
+}

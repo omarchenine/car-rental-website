@@ -1,43 +1,58 @@
 import { NextResponse } from "next/server"
-import { createSessionToken, setSessionCookie } from "@/lib/auth"
+import { createSessionToken, setSessionCookie, verifyPassword } from "@/lib/auth"
+import { getAdminUsersCollection } from "@/lib/mongodb"
+import { validateLogin } from "@/lib/admin-types"
 
 export const runtime = "nodejs"
 
-// Simple constant-time string compare.
-function safeEqual(a: string, b: string): boolean {
-  if (a.length !== b.length) return false
-  let diff = 0
-  for (let i = 0; i < a.length; i++) {
-    diff |= a.charCodeAt(i) ^ b.charCodeAt(i)
-  }
-  return diff === 0
-}
-
 export async function POST(req: Request) {
-  const expected = process.env.ADMIN_PASSWORD
-  if (!expected) {
-    return NextResponse.json({ error: "Admin password not configured on the server." }, { status: 500 })
-  }
-
-  let password = ""
   try {
-    const body = (await req.json()) as { password?: string }
-    password = String(body.password ?? "")
-  } catch {
-    return NextResponse.json({ error: "Invalid request body." }, { status: 400 })
-  }
+    const body = await req.json()
+    const { email, password } = body
 
-  if (!password) {
-    return NextResponse.json({ error: "Password is required." }, { status: 400 })
-  }
+    // Validate input
+    const validation = validateLogin({ email, password })
+    if (!validation.ok) {
+      return NextResponse.json({ errors: validation.errors }, { status: 400 })
+    }
 
-  if (!safeEqual(password, expected)) {
-    // Small delay to slow brute-force attempts.
-    await new Promise((r) => setTimeout(r, 400))
-    return NextResponse.json({ error: "Incorrect password." }, { status: 401 })
-  }
+    // Add delay to slow brute-force attacks
+    await new Promise((r) => setTimeout(r, 300))
 
-  const token = await createSessionToken()
-  await setSessionCookie(token)
-  return NextResponse.json({ ok: true })
+    const adminUsers = await getAdminUsersCollection()
+
+    // Find user by email
+    const user = await adminUsers.findOne({ email: email.toLowerCase() })
+
+    if (!user) {
+      return NextResponse.json({ error: "Invalid email or password" }, { status: 401 })
+    }
+
+    if (!user.isVerified) {
+      return NextResponse.json({ error: "Email not verified. Check your email for verification link." }, { status: 403 })
+    }
+
+    // Verify password
+    const isPasswordValid = await verifyPassword(password, user.passwordHash)
+
+    if (!isPasswordValid) {
+      return NextResponse.json({ error: "Invalid email or password" }, { status: 401 })
+    }
+
+    // Update last login
+    await adminUsers.updateOne(
+      { _id: user._id },
+      { $set: { lastLogin: new Date() } }
+    )
+
+    // Create session
+    const token = await createSessionToken()
+    await setSessionCookie(token)
+
+    return NextResponse.json({ ok: true })
+  } catch (error) {
+    console.error("[Login] Error:", error)
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+  }
 }
+

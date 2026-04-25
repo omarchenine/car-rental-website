@@ -1,6 +1,7 @@
 import { MongoClient, type Db, type Collection } from "mongodb"
 import type { CarDoc } from "./car-types"
 import type { BookingDoc } from "./booking-types"
+import type { AdminUser } from "./admin-types"
 
 const options = {
   maxPoolSize: 10,
@@ -94,6 +95,19 @@ export async function getBookingsCollection(): Promise<Collection<BookingDoc>> {
     col.createIndex({ carId: 1 }),
     col.createIndex({ customerEmail: 1 }),
     col.createIndex({ status: 1 }),
+  ]).catch(() => {})
+  return col
+}
+
+export async function getAdminUsersCollection(): Promise<Collection<AdminUser>> {
+  const db = await getDb()
+  const col = db.collection<AdminUser>("adminUsers")
+  // Fire-and-forget: never let index creation races or perms block reads.
+  void Promise.all([
+    col.createIndex({ email: 1 }, { unique: true }),
+    col.createIndex({ verificationToken: 1 }),
+    col.createIndex({ resetToken: 1 }),
+    col.createIndex({ createdAt: -1 }),
   ]).catch(() => {})
   return col
 }
