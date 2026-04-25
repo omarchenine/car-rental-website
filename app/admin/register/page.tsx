@@ -1,40 +1,105 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { Car } from "lucide-react"
+import { redirect } from "next/navigation"
+import { Car, Shield, Mail, Lock } from "lucide-react"
 import { RegisterForm } from "@/components/admin/register-form"
+import { getCurrentSession } from "@/lib/auth"
 
 export const metadata: Metadata = {
-  title: "Register | DCMotors Admin",
-  description: "Create a new admin account",
+  title: "Create Account | DCMotors Admin",
+  description: "Register for a new admin account with email verification",
 }
 
-export default function RegisterPage() {
+export const dynamic = "force-dynamic"
+
+export default async function RegisterPage() {
+  const session = await getCurrentSession()
+  if (session) redirect("/admin")
+
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-4 py-12">
-      <div className="w-full max-w-md rounded-lg border border-border bg-card shadow-sm">
-        <div className="border-b border-border px-6 py-8">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground">
-              <Car className="h-4 w-4" />
+    <main className="min-h-screen bg-background flex flex-col">
+      {/* Header */}
+      <div className="border-b border-border bg-card">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+          <Link href="/" className="flex items-center gap-2 w-fit hover:opacity-80 transition-opacity">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+              <Car className="h-4 w-4" aria-hidden="true" />
             </span>
-            <div className="flex flex-col">
-              <span className="font-serif text-lg font-semibold">DCMotors</span>
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                Admin
-              </span>
-            </div>
+            <span className="font-serif text-lg font-semibold">DCMotors</span>
           </Link>
         </div>
+      </div>
 
-        <div className="px-6 py-8">
-          <div className="mb-6">
-            <h1 className="font-serif text-2xl font-semibold">Create Account</h1>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Enter your details below to get started
-            </p>
+      {/* Main Content */}
+      <div className="flex-1 flex items-center justify-center px-4 py-12 sm:py-16">
+        <div className="w-full max-w-2xl">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            {/* Left Column - Information */}
+            <div className="space-y-8">
+              <div>
+                <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">
+                  Create Account
+                </h1>
+                <p className="mt-3 text-base text-muted-foreground">
+                  Join the DCMotors admin team and manage your inventory with secure access.
+                </p>
+              </div>
+
+              {/* Benefits */}
+              <div className="space-y-4">
+                <div className="flex gap-3">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-foreground">Email Verification</h3>
+                    <p className="mt-0.5 text-sm text-muted-foreground">
+                      Secure your account with email verification
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Lock className="h-4 w-4 text-primary" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-foreground">Strong Security</h3>
+                    <p className="mt-0.5 text-sm text-muted-foreground">
+                      Industry-standard password hashing and encryption
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Shield className="h-4 w-4 text-primary" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-foreground">Your Privacy Protected</h3>
+                    <p className="mt-0.5 text-sm text-muted-foreground">
+                      Your data is encrypted and never shared
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Already have account */}
+              <div className="hidden md:block pt-4 border-t border-border">
+                <p className="text-sm text-muted-foreground">
+                  Already have an account?{' '}
+                  <Link href="/admin/login" className="font-medium text-foreground hover:underline">
+                    Sign in instead
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column - Form */}
+            <div className="w-full rounded-lg border border-border bg-card p-6 sm:p-8 shadow-sm h-fit">
+              <RegisterForm />
+            </div>
           </div>
-
-          <RegisterForm />
         </div>
       </div>
     </main>
